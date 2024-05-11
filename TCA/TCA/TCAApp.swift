@@ -22,8 +22,8 @@ struct TCAApp: App {
 						Text("Basic counter")
 					}
 				}
+				.navigationTitle("Cases")
 			}
-			.navigationTitle("Cases")
 
         }
     }
