@@ -21,6 +21,14 @@ struct TCAApp: App {
 					} label: {
 						Text("Basic counter")
 					}
+					
+					NavigationLink {
+						BindingView(store: Store(initialState: CaseBindingReducer.State(), reducer: {
+							CaseBindingReducer()
+						}))
+					} label: {
+						Text("Binding")
+					}
 				}
 				.navigationTitle("Cases")
 			}
