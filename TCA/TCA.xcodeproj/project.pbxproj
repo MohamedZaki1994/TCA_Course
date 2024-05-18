@@ -280,6 +280,7 @@
 				70AD3ECA2BE7593A00614A6B /* TCAApp.swift in Sources */,
 				7081DEA42BEF37060074CEE1 /* Delegation.swift in Sources */,
 				70AD3EF82BE759BB00614A6B /* Basic.swift in Sources */,
+				7081DEA22BEF367E0074CEE1 /* Binding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
