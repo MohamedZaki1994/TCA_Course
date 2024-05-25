@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7081DEA22BEF367E0074CEE1 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7081DEA12BEF367E0074CEE1 /* Binding.swift */; };
 		7081DEA42BEF37060074CEE1 /* Delegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7081DEA32BEF37060074CEE1 /* Delegation.swift */; };
+		708A7DBC2C01A6B600D86833 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A7DBB2C01A6B600D86833 /* Dependency.swift */; };
 		70AD3ECA2BE7593A00614A6B /* TCAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD3EC92BE7593A00614A6B /* TCAApp.swift */; };
 		70AD3ECC2BE7593A00614A6B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD3ECB2BE7593A00614A6B /* ContentView.swift */; };
 		70AD3ECE2BE7593C00614A6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70AD3ECD2BE7593C00614A6B /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		7081DEA12BEF367E0074CEE1 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		7081DEA32BEF37060074CEE1 /* Delegation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegation.swift; sourceTree = "<group>"; };
+		708A7DBB2C01A6B600D86833 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
 		70AD3EC62BE7593A00614A6B /* TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70AD3EC92BE7593A00614A6B /* TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAApp.swift; sourceTree = "<group>"; };
 		70AD3ECB2BE7593A00614A6B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				70AD3EF72BE759BB00614A6B /* Basic.swift */,
 				7081DEA12BEF367E0074CEE1 /* Binding.swift */,
 				7081DEA32BEF37060074CEE1 /* Delegation.swift */,
+				708A7DBB2C01A6B600D86833 /* Dependency.swift */,
 				70AD3ECD2BE7593C00614A6B /* Assets.xcassets */,
 				70AD3ECF2BE7593C00614A6B /* TCA.entitlements */,
 				70AD3ED02BE7593C00614A6B /* Preview Content */,
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				708A7DBC2C01A6B600D86833 /* Dependency.swift in Sources */,
 				70AD3ECC2BE7593A00614A6B /* ContentView.swift in Sources */,
 				70AD3ECA2BE7593A00614A6B /* TCAApp.swift in Sources */,
 				7081DEA42BEF37060074CEE1 /* Delegation.swift in Sources */,
