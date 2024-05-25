@@ -29,6 +29,14 @@ struct TCAApp: App {
 					} label: {
 						Text("Binding")
 					}
+					
+					NavigationLink {
+						ParentView(store: Store(initialState: ParentReducer.State(), reducer: {
+							ParentReducer()
+						}))
+					} label: {
+						Text("Delegation")
+					}
 				}
 				.navigationTitle("Cases")
 			}
