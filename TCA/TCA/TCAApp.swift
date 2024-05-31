@@ -37,6 +37,14 @@ struct TCAApp: App {
 					} label: {
 						Text("Delegation")
 					}
+					
+					NavigationLink {
+						DependencyView(store: Store(initialState: DependencyReducer.State(), reducer: {
+							DependencyReducer()
+						}))
+					} label: {
+						Text("Dependency")
+					}
 				}
 				.navigationTitle("Cases")
 			}
