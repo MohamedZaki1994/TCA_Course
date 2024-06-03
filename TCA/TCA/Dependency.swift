@@ -12,7 +12,7 @@ import ComposableArchitecture
 struct DependencyReducer {
 	
 	@Dependency(\.continuousClock) var clock
-	
+	@Dependency(\.apiClient) var apiClient
 	@ObservableState
 	struct State: Equatable {
 		var title = "Hello"
@@ -27,10 +27,11 @@ struct DependencyReducer {
 		Reduce { state, action in
 			switch action {
 			case .buttonTapped:
-				return .run { send in
-					try await clock.sleep(for: .seconds(2))
-//					state.title = "Hello World"
-					await send(.buttonResponse("Hello World"))
+				return .run { [title = state.title] send in
+//					try await clock.sleep(for: .seconds(2))
+					let dataString = try await apiClient.fetch()
+					let x = title
+					await send(.buttonResponse(dataString))
 				}
 			case .buttonResponse(let newTitle):
 				state.title = newTitle
