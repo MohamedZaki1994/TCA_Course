@@ -45,7 +45,17 @@ struct TCAApp: App {
 					} label: {
 						Text("Dependency")
 					}
+					
+					NavigationLink {
+						ParentGamesView(store: Store(initialState: ParentGamesReducer.State(), reducer: {
+							ParentGamesReducer()
+						}))
+					} label: {
+						Text("Identified Array")
+					}
 				}
+				.navigationBarTitleDisplayMode(.inline)
+				
 				.navigationTitle("Cases")
 			}
 
