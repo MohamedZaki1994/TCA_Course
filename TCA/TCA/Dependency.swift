@@ -21,21 +21,25 @@ struct DependencyReducer {
 	enum Action {
 		case buttonTapped
 		case buttonResponse(String)
+		case cancel
 	}
-	
+	private enum CancelId { case cancel }
 	var body: some ReducerOf<Self> {
 		Reduce { state, action in
 			switch action {
 			case .buttonTapped:
 				return .run { [title = state.title] send in
-//					try await clock.sleep(for: .seconds(2))
-					let dataString = try await apiClient.fetch()
-					let x = title
-					await send(.buttonResponse(dataString))
-				}
+					try await clock.sleep(for: .seconds(2))
+//					let dataString = try await apiClient.fetch()
+//					let x = title
+					print("Task")
+					await send(.buttonResponse("dataString"))
+				}.cancellable(id: CancelId.cancel, cancelInFlight: true)
 			case .buttonResponse(let newTitle):
 				state.title = newTitle
 				return .none
+			case .cancel:
+				return .cancel(id: CancelId.cancel)
 			}
 		}
 	}
@@ -48,6 +52,9 @@ struct DependencyView: View {
 			Text(store.title)
 			Button("click me") {
 				store.send(.buttonTapped)
+			}
+			Button("Cancel") {
+				store.send(.cancel)
 			}
 		}
     }
