@@ -10,6 +10,7 @@ import ComposableArchitecture
 
 @main
 struct TCAApp: App {
+	@State var openTree = false
     var body: some Scene {
         WindowGroup {
 			NavigationStack {
@@ -53,7 +54,18 @@ struct TCAApp: App {
 					} label: {
 						Text("Identified Array")
 					}
+					
+					Button("Open Tree") {
+						openTree.toggle()
+					}
 				}
+				.sheet(isPresented: $openTree, content: {
+					NavigationStack {
+						TreeView(store: Store(initialState: TreeReducer.State(), reducer: {
+							TreeReducer()
+						}))
+					}
+				})
 				.navigationBarTitleDisplayMode(.inline)
 				
 				.navigationTitle("Cases")
