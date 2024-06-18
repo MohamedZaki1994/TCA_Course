@@ -59,7 +59,7 @@ struct TCAApp: App {
 						openTree.toggle()
 					}
 				}
-				.sheet(isPresented: $openTree, content: {
+				.fullScreenCover(isPresented: $openTree, content: {
 					NavigationStack {
 						TreeView(store: Store(initialState: TreeReducer.State(), reducer: {
 							TreeReducer()
@@ -74,3 +74,4 @@ struct TCAApp: App {
         }
     }
 }
+
