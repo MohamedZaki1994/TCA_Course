@@ -11,6 +11,7 @@ import ComposableArchitecture
 @main
 struct TCAApp: App {
 	@State var openTree = false
+	@State var openStack = false
     var body: some Scene {
         WindowGroup {
 			NavigationStack {
@@ -58,6 +59,10 @@ struct TCAApp: App {
 					Button("Open Tree") {
 						openTree.toggle()
 					}
+					
+					Button("Open Stack") {
+						openStack.toggle()
+					}
 				}
 				.fullScreenCover(isPresented: $openTree, content: {
 					NavigationStack {
@@ -65,6 +70,13 @@ struct TCAApp: App {
 							TreeReducer()
 						}))
 					}
+				})
+				
+				.fullScreenCover(isPresented: $openStack, content: {
+					StackRootView(store: Store(initialState: StackRootReducer.State(), reducer: {
+						StackRootReducer()
+					}))
+					
 				})
 				.navigationBarTitleDisplayMode(.inline)
 				

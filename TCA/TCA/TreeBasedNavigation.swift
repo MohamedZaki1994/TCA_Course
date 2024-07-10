@@ -12,41 +12,57 @@ struct TreeReducer {
 	enum Destination {
 		case screen1(TreeScreen1Reducer)
 		case screen2(TreeScreen2Reducer)
+		case alert(AlertState<Alert>)
+		enum Alert {
+			case ok
+			case cancel
+		}
 	}
 	
 	enum Action {
 		case destination(PresentationAction<Destination.Action>)
 		case push
 		case present
+		case alert
 	}
 	
 	var body: some ReducerOf<Self> {
 		Reduce { state, action in
 			switch action {
+			case .alert:
+				let alert = AlertState<Destination.Alert> {
+					TextState("Title")
+				}
+			actions: {
+				ButtonState(role: .destructive, action: .ok) {
+					TextState("Ok")
+				}
+				ButtonState(role: .cancel, action: .cancel) {
+					TextState("Cancel")
+				}
+			}
+			message: {
+					TextState("desc")
+				}
+				state.destination = .alert(alert)
+				return .none
 			case .present:
-//				state.screen2State = TreeScreen2Reducer.State(title: "im screen 2")
 				state.destination = .screen2(TreeScreen2Reducer.State(title: "im screen 2"))
 				return .none
-//			case .screen2Action:
-//				return .none
-//			case .screen1Action:
-//				return .none
 			case .push:
-//				state.screen1State = TreeScreen1Reducer.State(title: "Im screen 1")
 				state.destination = .screen1(TreeScreen1Reducer.State(title: "Im screen 1"))
+				return .none
+			case .destination(.presented(.screen1(.start))):
+				print("start")
+				return .none
+			case .destination(.presented(.alert(.ok))):
+				print("ok")
 				return .none
 			case .destination:
 				return .none
 			}
 		}
 		.ifLet(\.$destination, action: \.destination)
-//		.ifLet(\.$screen1State, action: \.screen1Action) {
-//			TreeScreen1Reducer()
-//		}
-//		
-//		.ifLet(\.$screen2State, action: \.screen2Action) {
-//			TreeScreen2Reducer()
-//		}
 	}
 }
 
@@ -63,7 +79,12 @@ struct TreeView: View {
 			Button("present screen") {
 				store.send(.present)
 			}
+			
+			Button("show alert") {
+				store.send(.alert)
+			}
 		}
+		.alert($store.scope(state: \.destination?.alert, action: \.destination.alert))
 		.navigationDestination(item: $store.scope(state: \.destination?.screen1, action: \.destination.screen1)) { store in
 			TreeScreen1View(store: store)
 		}
@@ -84,7 +105,7 @@ struct TreeView: View {
 @Reducer
 struct TreeScreen1Reducer {
 	@Dependency(\.continuousClock) var clock
-	
+	@Dependency(\.dismiss) var dismiss
 	@ObservableState
 	struct State: Equatable {
 		var title = "Screen 1"
@@ -92,6 +113,7 @@ struct TreeScreen1Reducer {
 	
 	enum Action {
 		case start
+		case close
 	}
 	private enum CancelId { case cancel }
 	
@@ -103,6 +125,10 @@ struct TreeScreen1Reducer {
 					try await clock.sleep(for: .seconds(2))
 					print("clock finished")
 				}.cancellable(id: CancelId.cancel)
+			case .close:
+				return .run { send in
+				await dismiss()
+				}
 			}
 		}
 	}
@@ -115,6 +141,9 @@ struct TreeScreen1View: View {
 			Text(store.title)
 			Button("start effect") {
 				store.send(.start)
+			}
+			Button("close") {
+				store.send(.close)
 			}
 		}
 	}
