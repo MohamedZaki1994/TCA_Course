@@ -13,6 +13,7 @@
 		708A7DBC2C01A6B600D86833 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A7DBB2C01A6B600D86833 /* Dependency.swift */; };
 		708AF2902C119996002949D5 /* IdentifiedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AF28F2C119996002949D5 /* IdentifiedArray.swift */; };
 		70951A362C2698480033B169 /* StackBasedNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70951A352C2698480033B169 /* StackBasedNavigation.swift */; };
+		709556C62C3EA213006526F3 /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709556C52C3EA213006526F3 /* SharedState.swift */; };
 		70AD3ECA2BE7593A00614A6B /* TCAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD3EC92BE7593A00614A6B /* TCAApp.swift */; };
 		70AD3ECC2BE7593A00614A6B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD3ECB2BE7593A00614A6B /* ContentView.swift */; };
 		70AD3ECE2BE7593C00614A6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70AD3ECD2BE7593C00614A6B /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		708A7DBB2C01A6B600D86833 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
 		708AF28F2C119996002949D5 /* IdentifiedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiedArray.swift; sourceTree = "<group>"; };
 		70951A352C2698480033B169 /* StackBasedNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackBasedNavigation.swift; sourceTree = "<group>"; };
+		709556C52C3EA213006526F3 /* SharedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedState.swift; sourceTree = "<group>"; };
 		70AD3EC62BE7593A00614A6B /* TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70AD3EC92BE7593A00614A6B /* TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAApp.swift; sourceTree = "<group>"; };
 		70AD3ECB2BE7593A00614A6B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				708AF28F2C119996002949D5 /* IdentifiedArray.swift */,
 				70B2A3E02C196A0800C846A7 /* TreeBasedNavigation.swift */,
 				70951A352C2698480033B169 /* StackBasedNavigation.swift */,
+				709556C52C3EA213006526F3 /* SharedState.swift */,
 				70AD3ECD2BE7593C00614A6B /* Assets.xcassets */,
 				70AD3ECF2BE7593C00614A6B /* TCA.entitlements */,
 				70AD3ED02BE7593C00614A6B /* Preview Content */,
@@ -298,6 +301,7 @@
 				70B2A3E12C196A0800C846A7 /* TreeBasedNavigation.swift in Sources */,
 				70AD3ECC2BE7593A00614A6B /* ContentView.swift in Sources */,
 				70AD3ECA2BE7593A00614A6B /* TCAApp.swift in Sources */,
+				709556C62C3EA213006526F3 /* SharedState.swift in Sources */,
 				708AF2902C119996002949D5 /* IdentifiedArray.swift in Sources */,
 				7081DEA42BEF37060074CEE1 /* Delegation.swift in Sources */,
 				70AD3EF82BE759BB00614A6B /* Basic.swift in Sources */,
@@ -668,7 +672,7 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.10.2;
+				minimumVersion = 1.11.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
