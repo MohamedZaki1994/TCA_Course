@@ -84,11 +84,13 @@ struct SharedScreen3Reducer  {
 		var title: String
 		var dataFromScreen2 = ""
 		var data = "data from screen 3"
+		@Shared(.data) var title1 = SharedData(title: "title")
 	}
 	
 	enum Action {
 		case backToRoot
 		case backButtonTapped
+		case change
 		case delegate(Delegation)
 		enum Delegation {
 			case backButton(String)
@@ -100,6 +102,9 @@ struct SharedScreen3Reducer  {
 			switch action {
 			case .backButtonTapped:
 				return .send(.delegate(.backButton(state.data)))
+			case .change:
+				state.title1.title = "new title"
+				return .none
 			default:
 				return .none
 			}
@@ -112,11 +117,31 @@ struct SharedScreen3View: View {
 	var body: some View {
 		Text(store.title)
 		Text(store.dataFromScreen2)
+		Text(store.title1.title)
 		Button("Back to root") {
 			store.send(.backToRoot)
 		}
 		Button("back") {
 			store.send(.backButtonTapped)
 		}
+		Button("change") {
+			store.send(.change)
+		}
 	}
+}
+
+extension PersistenceReaderKey where Self == InMemoryKey<SharedData> {
+	static var data: Self {
+		.inMemory("data")
+	}
+}
+
+extension PersistenceReaderKey where Self == AppStorageKey<Int> {
+	static var counter: Self {
+		.appStorage("counter")
+	}
+}
+
+struct SharedData: Equatable {
+	var title: String
 }

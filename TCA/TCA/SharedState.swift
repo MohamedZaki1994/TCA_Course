@@ -13,6 +13,7 @@ struct SharedRootReducer {
 	@ObservableState
 	struct State: Equatable {
 		var path = StackState<Path.State>()
+		@Shared(.data) var title1 = SharedData(title: "title")
 	}
 	
 	enum Action {
@@ -65,6 +66,7 @@ struct SharedRootView: View {
 	var body: some View {
 		NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
 			VStack {
+				Text(store.title1.title)
 				Button("Go to screen 1") {
 					store.send(.goToScreen1)
 				}

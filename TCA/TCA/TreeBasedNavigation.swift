@@ -6,6 +6,8 @@ struct TreeReducer {
 	@ObservableState
 	struct State: Equatable {
 		@Presents var destination: Destination.State?
+		@Shared(.inMemory("memory")) var data = MemoryData(title: "title", desc: "desc")
+		@Shared(.counter) var counter = 0
 	}
 	
 	@Reducer(state: .equatable)
@@ -50,7 +52,7 @@ struct TreeReducer {
 				state.destination = .screen2(TreeScreen2Reducer.State(title: "im screen 2"))
 				return .none
 			case .push:
-				state.destination = .screen1(TreeScreen1Reducer.State(title: "Im screen 1"))
+				state.destination = .screen1(TreeScreen1Reducer.State(title: "Im screen 1", desc: state.$data.desc))
 				return .none
 			case .destination(.presented(.screen1(.start))):
 				print("start")
@@ -72,6 +74,9 @@ struct TreeView: View {
 	var body: some View {
 		VStack {
 			Text("Root tree")
+			Text(store.data.title)
+			Text(store.data.desc)
+			Text(store.counter.description)
 			Button("push screen") {
 				store.send(.push)
 			}
@@ -109,11 +114,15 @@ struct TreeScreen1Reducer {
 	@ObservableState
 	struct State: Equatable {
 		var title = "Screen 1"
+		@Shared var desc: String
+		@Shared(.appStorage("storage")) var counter = 0
 	}
 	
 	enum Action {
 		case start
 		case close
+		case changeDesc
+		case add
 	}
 	private enum CancelId { case cancel }
 	
@@ -129,6 +138,12 @@ struct TreeScreen1Reducer {
 				return .run { send in
 				await dismiss()
 				}
+			case .changeDesc:
+				state.desc = "new desc"
+				return .none
+			case .add:
+				state.counter += 1
+				return .none
 			}
 		}
 	}
@@ -139,11 +154,19 @@ struct TreeScreen1View: View {
 	var body: some View {
 		VStack {
 			Text(store.title)
+			Text(store.desc)
+			Text(store.counter.description)
 			Button("start effect") {
 				store.send(.start)
 			}
 			Button("close") {
 				store.send(.close)
+			}
+			Button("changeDesc") {
+				store.send(.changeDesc)
+			}
+			Button("Add") {
+				store.send(.add)
 			}
 		}
 	}
@@ -171,4 +194,9 @@ struct TreeScreen2View: View {
 	var body: some View {
 		Text(store.title)
 	}
+}
+
+struct MemoryData: Equatable {
+	var title: String
+	var desc: String
 }
