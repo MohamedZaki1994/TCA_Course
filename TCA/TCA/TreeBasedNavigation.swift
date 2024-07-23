@@ -115,7 +115,7 @@ struct TreeScreen1Reducer {
 	struct State: Equatable {
 		var title = "Screen 1"
 		@Shared var desc: String
-		@Shared(.appStorage("storage")) var counter = 0
+		@Shared(.counter) var counter = 0
 	}
 	
 	enum Action {
@@ -136,7 +136,7 @@ struct TreeScreen1Reducer {
 				}.cancellable(id: CancelId.cancel)
 			case .close:
 				return .run { send in
-				await dismiss()
+					await dismiss()
 				}
 			case .changeDesc:
 				state.desc = "new desc"

@@ -2,7 +2,7 @@ import SwiftUI
 import ComposableArchitecture
 
 @Reducer
-struct StackRootReducer  {
+struct StackRootReducer {
 	@Reducer(state: .equatable)
 	enum Path {
 		case screen1(StackScreen1Reducer)
